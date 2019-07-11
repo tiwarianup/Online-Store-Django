@@ -18,6 +18,7 @@ def homepage(request):
     return render(request, "homepage.html", context)
 
 def loginpage(request):
+    #this is login page view
     form = LoginForm(request.POST or None)
     context = {
         "title": "Login to proceed",
