@@ -38,6 +38,7 @@ def loginpage(request):
     return render(request, "auth/login.html", context)
 
 def registerpage(request):
+    # this is registerpage view
     form = RegisterForm(request.POST or None)
     context = {
         "title": "Register a new account",
