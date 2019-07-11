@@ -121,14 +121,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#static file directory
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_project"),
 ]
 
-#static root directory definition
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root")
 
-#media static files settings
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")

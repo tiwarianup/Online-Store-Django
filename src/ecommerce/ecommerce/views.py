@@ -8,7 +8,6 @@ from .forms import ContactForm, LoginForm, RegisterForm
 User = get_user_model()
 
 def homepage(request):
-    #this is homepage view
     context = {
         "title": "Homepage",
         "content": "This is some homepage content."
@@ -18,7 +17,6 @@ def homepage(request):
     return render(request, "homepage.html", context)
 
 def loginpage(request):
-    #this is login page view
     form = LoginForm(request.POST or None)
     context = {
         "title": "Login to proceed",
@@ -38,7 +36,6 @@ def loginpage(request):
     return render(request, "auth/login.html", context)
 
 def registerpage(request):
-    # this is registerpage view
     form = RegisterForm(request.POST or None)
     context = {
         "title": "Register a new account",
