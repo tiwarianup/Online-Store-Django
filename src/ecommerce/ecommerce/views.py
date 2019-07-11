@@ -8,6 +8,7 @@ from .forms import ContactForm, LoginForm, RegisterForm
 User = get_user_model()
 
 def homepage(request):
+    #this is homepage view
     context = {
         "title": "Homepage",
         "content": "This is some homepage content."
