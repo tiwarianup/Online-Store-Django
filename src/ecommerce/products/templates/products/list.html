@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class='container'>
+    <div class='row'>
+        {% for object in object_list %}
+            <div class='col'>
+
+                {% include 'products/snippets/card.html' with instance=object %}
+
+                {% comment %} {% if forloop.counter|divisibleby:3 %}
+                    </div></div><div class='row'><div class='col-12'></hr></div>
+                {% elif forloop.counter|divisibleby:2 %}
+                    </div></div><div class='row'><div class='col-12'></hr></div>
+                {% else %}
+                    </div>
+                {% endif %} {% endcomment %}
+
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
+
+
+<h1><a href='{{ object.get_absolute_url }}'>{{object}}</a></h1>

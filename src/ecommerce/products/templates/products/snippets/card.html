@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+  <a href="{{ instance.get_absolute_url }}"><img src="{{ instance.image.url }}" class="card-img-top" alt="{{ instance.title }} image"></a>
+  <div class="card-body">
+    <h5 class="card-title">{{ instance.title }}</h5>
+    <p class="card-text">{{ instance.description|truncatewords:15 }}</p>
+    <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">VIEW</a>
+    {% comment %} <a href="{% url 'products:detail' slug=instance.slug %}" class="btn btn-warning">SEE DETAILS</a> {% endcomment %}
+  </div>
+</div>
