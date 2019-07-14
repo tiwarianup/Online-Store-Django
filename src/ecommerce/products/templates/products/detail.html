@@ -2,15 +2,14 @@
 
 {% block content %}
 
-    <div class='container'>
-        <div class='row'>
-            <div class='col'>
-                <h1>{{object}}</h1>
-                <h4>{{object.timestamp|timesince}} ago</h4>
-                <p>{{object.description|linebreaks}}</p>
-                <img src='{% if object.image %}{{object.image.url}}{% endif %}' class='img-fluid' />
-            </div>
-        </div>
+<div class='row'>
+    <div class='col'>
+        <h1>{{object}}</h1>
+        <h4>{{object.timestamp|timesince}} ago</h4>
+        <p>{{object.description|linebreaks}}</p>
+        <img src='{% if object.image %}{{object.image.url}}{% endif %}' class='img-fluid' />
     </div>
+</div>
+
 
 {% endblock content %}

@@ -2,20 +2,18 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="lead">{{ content }}</p>
-            </div>
-        </div><hr>
-        {% if premiumContent %}
-        <div class="row">
-            <div class="col-md-12">
-                <h4 class="lead">Premium Content</h4>
-                <p class="lead">{{ premiumContent }}</p>
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="lead">{{ content }}</p>
         </div>
-        {% endif %}
+    </div><hr>
+    {% if premiumContent %}
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="lead">Premium Content</h4>
+            <p class="lead">{{ premiumContent }}</p>
+        </div>
     </div>
+    {% endif %}
 {% endblock content %}
 
