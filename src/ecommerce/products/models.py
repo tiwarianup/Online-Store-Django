@@ -1,6 +1,7 @@
 import random 
 import os
 
+from django.db.models import Q
 from django.db import models
 from django.urls import reverse
 from django.db.models.signals import pre_save
@@ -27,6 +28,13 @@ def uploadImagePath(instance, filename):
 class ProductQuerySet(models.QuerySet):
     def featured(self):
         return self.filter(featured=True, isActive=True)
+    
+    def search(self, query):
+        lookups = (Q(title__icontains=query) | Q(description__icontains=query) | Q(price__icontains=query))
+        return self.filter(lookups).distinct()
+    
+    def active(self):
+        return self.filter(isActive=True)
 
 class ProductManager(models.Manager):
 
@@ -39,8 +47,12 @@ class ProductManager(models.Manager):
             return qs.first()
         return None
 
+
     def featured(self):
         return self.get_queryset().featured()
+
+    def search(self, query):
+        return self.get_queryset().active().search(query)
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
