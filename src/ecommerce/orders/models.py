@@ -5,6 +5,7 @@ from ecommerce.utils import uniqueOrderIdGenerator
 
 # Create your models here.
 
+# staus choices shown to the end user 
 ORDER_STATUS_CHOICES = (
     ('created', 'Created'),
     ('paid', 'Paid'),
