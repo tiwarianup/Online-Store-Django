@@ -45,7 +45,7 @@ class Cart(models.Model):
     timestamp   = models.DateTimeField(auto_now_add=True)
     updated     = models.DateTimeField(auto_now=True)
 
-    objects = CartManager()
+    objects = CartManager() #object is a model manager
 
     def __str__(self):
         return str(self.id)
