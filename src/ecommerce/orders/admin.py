@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Tag
 # Register your models here.
+from .models import Order
 
-admin.site.register(Tag)
+admin.site.register(Order)
