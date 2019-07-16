@@ -5,7 +5,7 @@ from django.db.models.signals import m2m_changed, pre_save
 from products.models import Product
 # Create your models here.
 
-User = settings.AUTH_USER_MODEL
+User = settings.AUTH_USER_MODEL #auth user model import
 
 class CartManager(models.Manager):
 
