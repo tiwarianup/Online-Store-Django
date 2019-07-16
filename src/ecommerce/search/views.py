@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 from products.models import Product
 # Create your views here.
 
+# View to see the products on search
 class SearchProductView(ListView):
     template_name = "search/view.html"
 
