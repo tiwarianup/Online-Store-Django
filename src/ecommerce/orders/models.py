@@ -26,7 +26,7 @@ class Order(models.Model):
     def __str__(self):
         return self.orderId
     
-
+#pre save signal for Order
 def pre_save_createOrderId(sender, instance, *args, **kwargs):
     if not instance.orderId:
         instance.orderId = uniqueOrderIdGenerator(instance)
