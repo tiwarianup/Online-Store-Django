@@ -17,8 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 
-from .views import homepage, contactpage, loginpage, registerpage
+from .views import homepage, contactpage
+from accounts.views import loginpage, registerpage, guestRegisterPage
 from carts.views import cartHome
 #from products.views import ProductFeaturedListView, ProductDetailView, ProductFeaturedDetailView
 
@@ -28,6 +30,8 @@ urlpatterns = [
     url(r'^products/', include("products.urls", namespace='products')),
     url(r'^search/', include("search.urls", namespace='search')),
     url(r'^login/$', loginpage, name='login'),
+    url(r'^register/guest/$', guestRegisterPage, name='guestRegister'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^register/$', registerpage, name='register'),
     url(r'^cart/',  include("carts.urls", namespace='carts')),
     url(r'^admin/', admin.site.urls),

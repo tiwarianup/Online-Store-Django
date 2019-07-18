@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if not billingProfile %}
+
+    <div class='row'>
+        <div class='col-12 col-md-6'>
+            <h3 class-'lead'>Login</h3><hr>
+            {% include 'accounts/snippets/form.html' with form=loginForm nextUrl=request.build_absolute_uri btnText='Login to Checkout'%}
+        </div>
+        <div class='col-12 col-md-6'>
+            <h3 class-'lead'>Continue as Guest</h3><hr>
+            {% url 'guestRegister' as guestRegsiterUrl %}
+            {% include 'accounts/snippets/form.html' with form=guestForm nextUrl=request.build_absolute_uri action_url=guestRegsiterUrl btnText='Proceed to Checkout' %}
+        </div>
+    </div>
+
+{% else %}
+
+    <h1>Checkout</h1>
+    <p>Cart Total: {{object.cart.total}}</p>
+    <p>Shipping Total: {{object.shippingTotal}}</p>
+    <p>Order Total: {{object.total}}</p>
+
+{% endif %}
+
+{% endblock content %}

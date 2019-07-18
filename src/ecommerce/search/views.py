@@ -5,7 +5,6 @@ from django.views.generic import ListView, DetailView
 from products.models import Product
 # Create your views here.
 
-# View to see the products on search
 class SearchProductView(ListView):
     template_name = "search/view.html"
 
@@ -15,7 +14,7 @@ class SearchProductView(ListView):
         return context
     
 
-    #Queryset returns featured products
+
     def get_queryset(self, *args, **kwargs):
         query = self.request.GET.get("q", None)
         if query is not None:

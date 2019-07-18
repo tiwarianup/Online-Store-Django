@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 
-
+from accounts.forms import LoginForm, GuestForm
+from accounts.models import GuestEmail
 from products.models import Product
+from billing.models import BillingProfile
 # Create your views here.
 from .models import Cart
+from orders.models import Order
 
 # def cartCreate(user=None):
 #     cartObj = Cart.objects.create(user=None)
@@ -57,3 +60,36 @@ def cartUpdate(request):
         request.session['nItems'] = cartObj.products.all().count()
         print(request.session['nItems'])
     return redirect("carts:home")
+
+def checkoutHome(request):
+    cartObj, cartCreated = Cart.objects.createNewOrGet(request)
+    print(cartObj, cartCreated)
+    orderObj = None
+    if cartCreated or cartObj.products.count() == 0:
+        redirect("carts:home")
+    else:
+        orderObj, newOrderObj = Order.objects.get_or_create(cart=cartObj)
+        print(orderObj, newOrderObj)
+    
+    user = request.user
+    billingProfile = None
+    loginForm = LoginForm()
+    guestForm = GuestForm()
+    guestEmailId = request.session.get('guestEmailId')
+
+    if user.is_authenticated():
+        billingProfile, bProfcreated = BillingProfile.objects.get_or_create(user=user, email=user.email)
+    elif guestEmailId is not None:
+        guestEmailObj = GuestEmail.objects.get(id=guestEmailId)
+        billingProfile, guestProfcreated = GuestEmail.objects.get_or_create(email=guestEmailObj.email)
+    else:
+        pass
+    
+    context = {
+        "object": orderObj,
+        "billingProfile": billingProfile,
+        "loginForm": loginForm,
+        "guestForm": guestForm
+        }
+    return render(request, 'carts/checkout.html', context)
+

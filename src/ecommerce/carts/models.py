@@ -5,7 +5,7 @@ from django.db.models.signals import m2m_changed, pre_save
 from products.models import Product
 # Create your models here.
 
-User = settings.AUTH_USER_MODEL #auth user model import
+User = settings.AUTH_USER_MODEL
 
 class CartManager(models.Manager):
 
@@ -45,12 +45,11 @@ class Cart(models.Model):
     timestamp   = models.DateTimeField(auto_now_add=True)
     updated     = models.DateTimeField(auto_now=True)
 
-    objects = CartManager() #object is a model manager
+    objects = CartManager()
 
     def __str__(self):
         return str(self.id)
 
-# many to many changed field signal
 def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):
     if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
         print(action)

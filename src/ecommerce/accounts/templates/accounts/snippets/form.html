@@ -1,0 +1,7 @@
+<form method="POST" action='{% if action_url %}{{ action_url }} {% else %} {% url "login" %}{% endif %}'> {% csrf_token %}
+{% if nextUrl %}
+    <input type='hidden' name='next' value='{{ nextUrl }}'
+{% endif %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-info" value="{{ btnText }}" />
+</form>
